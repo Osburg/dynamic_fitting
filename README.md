@@ -3,6 +3,8 @@
 This repository contains the source code implementing the proposed model from our article "A Deep Autoencoder for Fast Spectral-Temporal Fitting of Dynamic Deuterium Metabolic Imaging Data at 7T"
 
 ## Installation and Usage
+DISCLAIMER: Parts of the project's code are not included in this repository prior to the publication of our manuscript and will be added after publication.
+
 Clone and install the repository using
 ```
 git clone git@github.com:Osburg/dynamic_fitting.git
