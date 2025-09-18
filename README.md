@@ -11,7 +11,7 @@ git clone git@github.com:Osburg/dynamic_fitting.git
 cd dynamic_fitting
 pip install -e .
 ```
-Additionally, the dependency (torchcubicspline)[https://github.com/patrick-kidger/torchcubicspline] must be installed. This can be done via
+Additionally, the dependency [torchcubicspline](https://github.com/patrick-kidger/torchcubicspline) must be installed. This can be done via
 ```
 pip install git+https://github.com/patrick-kidger/torchcubicspline.git
 ```
