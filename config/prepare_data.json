@@ -1,0 +1,22 @@
+{
+  "n_zero_filling": 256,
+  "n_samples": 256,
+  "dwelltime": "<dwelltime_in_seconds>",
+  "datasets": {
+    "data_root_folder": "<path_to_directory_with_subject_folders>",
+    "data_subfolders": ["<name_of_subject_folder_1>","<name_of_subject_folder_2>", ...],
+    "conjugate_data": true,
+    "b0_correction": false
+  },
+  "basis": {
+    "basis_root_folder": "<path_to_directory_with_basis_files>",
+    "basis_file_name": ["<name_of_basis_file_1.txt>", "<name_of_basis_file_2.txt>", ...],
+    "metabolite_names": ["<name_of_metabolite_1>","<name_of_metabolite_2>", ...],
+    "normalization": 1,
+    "conjugate_basis": false,
+    "nucleus": "D2",
+    "reference_frequency": "<reference_frequency_in_MHz>",
+    "acquisition_delay_index": "<index_of_first_point_in_FID_to_use>",
+    "ppm_bounds_for_plotting": [0.7, 6.0]
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "io_config": {
+    "basis_path": "<path_to_basisset.mat>",
+    "training_data_path": "<path_to_training_dataset.npy>",
+    "test_data_path": "<path_to_test_dataset.npy>",
+    "logging_path": "<path_for_logs_and_outputs>",
+    "full_subject_path_validation": "<path_to_full_subject_for_validation>",
+    "full_subject_path_test": "<path_to_full_subject_for_testing>",
+    "saving_path": "<path_to_save_trained_models>",
+    "dwelltime": "<dwelltime_in_seconds>",
+    "reference_frequency": "<reference_frequency_in_MHz>",
+    "nucleus": "D2"
+  },
+  "preprocessor_config": {
+    "basis_signal_names": ["<name_of_metabolite_1>","<name_of_metabolite_2>", ...],
+    "normalize_signals": "frequency",
+    "normalization_scaling_mode": "z-score",
+    "shift_mean_to_zero": true,
+    "augmentation_params": [0, 0, 0, 0, 0],
+    "conjugate_basis": false,
+    "rotate_signals_to_real_axis": true,
+    "ppm_bounds": [0.7, 6.7]
+  },
+  "encoder_config": {
+    "shared_lineshape_kernel": false
+  },
+  "decoder_config": {
+    "n_splines": 4,
+    "normalize_basis": false,
+    "reference_peak_interval": [9.1, 9.35],
+    "complex_output": true,
+    "scaling_factors": {
+      "basis_signals":  1e3,
+      "frequency": 1,
+      "lorentzian_damping": 1e1,
+      "baseline_spline_values": 1,
+      "delta_phi":  1,
+      "delta_phi_1":  1
+    },
+    "shared_baseline_spline": false,
+    "decoder_class": "UniversalDynamicDecoder",
+    "lineshape_kernel_size": 0.256,
+    "dynamic_decoder_options": {
+      "amplitudes": {
+        "Glc": {"type":"Sigmoid", "parameters": 3},
+        "Glx": {"type":"Sigmoid", "parameters": 3},
+        "Lac": {"type":"Constant", "parameters": 1},
+        "water": {"type":"Linear", "parameters": 2}
+      },
+      "delta_f": {"type":"AgnosticDynamics", "parameters": 8}
+    },
+    "repetition_axis": [14, 21, 28, 35, 42, 49, 56, 63]
+  },
+  "loss_function_config": {
+    "baseline_spline_regularization_slope": 0,
+    "baseline_spline_regularization_l2": 0,
+    "baseline_spline_regularization_curvature": 1e10,
+    "lineshape_kernel_regularization_curvature": 3e1,
+    "sigma_gamma_l": 1.0,
+    "sigma_epsilon_l": 0.2,
+    "loss_function_type": "DynamicLCModelLossFunction",
+    "reconstruction_scaling": "auto",
+    "dynamic_spline_regularization_curvature": 0,
+    "dynamic_spline_regularization_target_quantities": [],
+    "weights_time_axis": [1,1,1,1,1,1,1,1]
+  },
+  "training_config": {
+    "batch_size": 256,
+    "learning_rate": 2e-3,
+    "weight_decay": 1e-3,
+    "epochs": 800,
+    "dropout": 0.0,
+    "reduce_learning_rate": 0.5,
+    "validation_split": 0.1,
+    "n_workers": 0,
+    "early_stopping": 2000,
+    "load_from_checkpoint": "<path_to_checkpoint_or_null>",
+    "milestones": [20, 50, 100, 200, 300, 400, 600]
+  },
+  "test_config": {
+    "conjugate_full_subject_signals": true,
+    "full_subject_name": "<subject_name_for_the_subject_specified_in_full_subject_path_validation>",
+    "plot_at_index": [["<idx_x>","<idx_y>","<idx_z>"]],
+    "plot_at_time_point": 4,
+    "b0_correction_path": null
+  },
+  "validation_config": {
+    "plot_at_index": [["<idx_x>","<idx_y>","<idx_z>"]],
+    "plot_ratio_denominator": "water",
+    "plot_ratio_numerator": ["Glc", "Glx", "Lac"],
+    "plot_ratio_slice": 12,
+    "maximum_plot_ratio": [0.5,0.5,0.5],
+    "conjugate_full_subject_signals": true,
+    "full_subject_name": "<subject_name_for_the_subject_specified_in_full_subject_path_validation",
+    "plot_at_time_point": 5,
+    "every_n_epochs": 20,
+    "b0_correction_path": null,
+    "divide_by_mean": false
+  },
+    "pytorch_config": {
+     "device": "cuda:0",
+    "num_threads": 16,
+    "float32_matmul_precision": "highest",
+    "default_type": "single"
+  },
+  "wandb_config": {
+    "project_name": "<wandb_project_name",
+    "key": "<wandb_key>"
+  }
+}
