@@ -34,6 +34,7 @@ python ./main.py --mode train --config ./config/config.json
 
 ## Reference
 If you use this code in your research, please cite the our paper:
+```
 @article{OSBURG2025121632,
 title = {A deep autoencoder for fast spectral–temporal fitting of dynamic deuterium metabolic imaging data at 7T},
 journal = {NeuroImage},
